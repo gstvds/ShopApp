@@ -1,7 +1,7 @@
 import PRODUCTS from "../../data/dummy-data";
 
 const initialState = {
-  avialableProducts: PRODUCTS,
+  availableProducts: PRODUCTS,
   userProducts: PRODUCTS.filter(products => products.ownerId === "u1")
 };
 
