@@ -28,5 +28,8 @@
   "devDependencies": {
     "babel-preset-expo": "^7.1.0"
   },
-  "private": true
+  "private": true,
+  "resolutions": {
+    "mem": "4.0.0"
+  }
 }
