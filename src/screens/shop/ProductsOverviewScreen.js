@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import ProductItem from "../../components/shop/ProductItem";
-import * as cartActions from "../../store/actions/cart";
 import HeaderButton from "../../components/UI/HeaderButton";
+import * as cartActions from "../../store/actions/cart";
 
 const ProductsOverviewScreen = props => {
   const products = useSelector(state => state.products.availableProducts);
@@ -39,7 +39,7 @@ ProductsOverviewScreen.navigationOptions = navData => {
   return {
     headerTitle: "All Products",
     headerLeft: (
-<HeaderButtons HeaderButtonComponent={HeaderButton}>
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Menu"
           iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
