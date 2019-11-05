@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   detail: {
     alignItems: "center",
-    height: "15%",
+    height: "17%",
     padding: 10
   },
   title: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    height: "25%"
+    height: "23%"
   }
 });
 
