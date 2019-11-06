@@ -26,3 +26,6 @@ expo install expo-fonts
 Then create a constant to store our fonts in a javascript object inside Font.loadAsync. Then, with useState and AppLoading we set our app to start after the font is loaded.
 
 To manage our cart products we will also use redux. So we create a new reducer/action called cart
+
+useReducer is a hook that helps with state managment and we use it when we have connected states or more complex state and dont want to have a bunch of individuals states. It is not redux reducer.
+Tip: use useReducer outside of our component so it will no be rendered every time to avoid unecessary recreation of this fuction.
