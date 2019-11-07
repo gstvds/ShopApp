@@ -11,10 +11,10 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 
 import HeaderButton from "../../components/UI/HeaderButton";
-import * as productActions from "../../store/actions/products";
+import * as productsActions from "../../store/actions/products";
 import Input from "../../components/UI/Input";
 
-const FORM_INPUT_UPDATE = "UPDATE";
+const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
@@ -83,7 +83,7 @@ const EditProductScreen = props => {
     }
     if (editedProduct) {
       dispatch(
-        productActions.updateProduct(
+        productsActions.updateProduct(
           productId,
           formState.inputValues.title,
           formState.inputValues.description,
@@ -92,7 +92,7 @@ const EditProductScreen = props => {
       );
     } else {
       dispatch(
-        productActions.createProduct(
+        productsActions.createProduct(
           formState.inputValues.title,
           formState.inputValues.description,
           formState.inputValues.imageUrl,
@@ -113,7 +113,7 @@ const EditProductScreen = props => {
         type: FORM_INPUT_UPDATE,
         value: inputValue,
         isValid: inputValidity,
-        inputId: inputIdentifier
+        input: inputIdentifier
       });
     },
     [dispatchFormState]
