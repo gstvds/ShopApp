@@ -29,3 +29,14 @@ To manage our cart products we will also use redux. So we create a new reducer/a
 
 useReducer is a hook that helps with state managment and we use it when we have connected states or more complex state and dont want to have a bunch of individuals states. It is not redux reducer.
 Tip: use useReducer outside of our component so it will no be rendered every time to avoid unecessary recreation of this fuction.
+
+## Database Connection
+
+To connect to a database (Firebase) we create a project inside firebase, then go to Develop > Database and scroll down to Realtime Database then click Create database and start with Test mode (Dont require authentication).
+
+We need to install redux-thunk (redux middleware) that allows us to change action creators and handle side effects (assynchronous). To start using redux-thunk we first need to import applyMiddleware from redux and ReduxThunk from redux-thunk inside our App.js file. Then we pass applyMiddleware as a function and as second argument in createStore. Inside this function we pass ReduxThunk.
+
+In product action, we change our createProduct to a dispatch function so we can use redux-thunk and add any async code inside this new function. To connect to our database, we use fetch function and pass our database url that we want send a request to. We can also use any segment that we want and pass after / so firebase will create a folder that stores all arguments in that segment.
+IMPORTANT: when create a new segment, it is important to end with .json.
+
+By default, fetch will send a get request, but to store data firebase wants a post request. To send that we need to pass a second argument to fetch which is a js object with the method (in this case, 'POST' method)
