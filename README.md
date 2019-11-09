@@ -44,3 +44,13 @@ By default, fetch will send a get request, but to store data firebase wants a po
 ## Pull to Refresh
 
 When working with FlatList, we can use a prop called onRefresh to add a pull to refresh. It receives a function that should refresh our screen. By adding this prop we should also add refreshing, a prop that points to a state that says if we are refreshing or not.
+
+## User Authentication
+
+### How authentication works
+
+The app send datas to the server (email, password, etc). The server responds with something (error, success) (and store a session on the server and return a session key to the front end. With that session key, the browser is able to find out that the user using this app is authenticated. This is for web applications). For mobile apps it works a bit differently because there you communicate with service which are stateless (i.e. restfull api or graphql api). And there you don't really have a session because the server doesn't care about the individual clients. Instead we work with tokens.
+
+When you log in and the server checks the e-mail and password and determines that both is correct, the server creates a token. This token is send to the app and there you can store it in some storage, i.e. the redux storage. If the user log out, we simply delete this token.
+
+This token is also used for something else on the server. For example, certain URL which are only exposed to logged in users, like creating products in this app.
