@@ -41,6 +41,14 @@ IMPORTANT: when create a new segment, it is important to end with .json.
 
 By default, fetch will send a get request, but to store data firebase wants a post request. To send that we need to pass a second argument to fetch which is a js object with the method (in this case, 'POST' method)
 
+### Authentication with Firebase
+
+Firebase has authentication built in. We go to Develop -> Authentication -> Set up sign-in method -> Email/Password -> Enable. With that we can create users or log them in.
+
+To learn more about firebase auth api, go to https://firebase.google.com/docs/reference/rest/auth.
+
+To get the API_KEY, go to the Gear -> Project Settings
+
 ## Pull to Refresh
 
 When working with FlatList, we can use a prop called onRefresh to add a pull to refresh. It receives a function that should refresh our screen. By adding this prop we should also add refreshing, a prop that points to a state that says if we are refreshing or not.
