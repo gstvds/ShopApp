@@ -40,3 +40,7 @@ In product action, we change our createProduct to a dispatch function so we can 
 IMPORTANT: when create a new segment, it is important to end with .json.
 
 By default, fetch will send a get request, but to store data firebase wants a post request. To send that we need to pass a second argument to fetch which is a js object with the method (in this case, 'POST' method)
+
+## Pull to Refresh
+
+When working with FlatList, we can use a prop called onRefresh to add a pull to refresh. It receives a function that should refresh our screen. By adding this prop we should also add refreshing, a prop that points to a state that says if we are refreshing or not.
