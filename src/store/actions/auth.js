@@ -94,7 +94,7 @@ export const login = (email, password) => {
   };
 };
 
-const saveDataToStorage = (token, userId) => {
+const saveDataToStorage = (token, userId, expirationDate) => {
   AsyncStorage.setItem(
     "userData",
     JSON.stringify({
