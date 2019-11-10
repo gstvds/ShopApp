@@ -82,7 +82,7 @@ export const login = (email, password) => {
     //   token: responseData.idToken,
     //   userId: responseData.localId
     // });
-    dispatch(authenticate(responseData.localId, responseData.idtoken));
+    dispatch(authenticate(responseData.localId, responseData.idToken));
     const expirationDate = new Date(
       new Date().getTime() + parseInt(responseData.expiresIn) * 1000
     );
@@ -100,7 +100,7 @@ const saveDataToStorage = (token, userId) => {
     JSON.stringify({
       token: token,
       userId: userId,
-      expirationDate: expirationDate.toISOString()
+      expiryDate: expirationDate.toISOString()
     })
   );
 };

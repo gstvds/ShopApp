@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { Colors } from "../constants/Colors";
 import * as authActions from "../store/actions/auth";
 
 const StartupScreen = props => {
@@ -20,8 +20,8 @@ const StartupScreen = props => {
         return;
       }
       const transformedData = JSON.parse(userData); // parses a string in JSON format and converts to a JS object or array
-      const { token, userId, expirationDate } = transformedData;
-      const expirationDate = new Date(expirationDate);
+      const { token, userId, expiryDate } = transformedData;
+      const expirationDate = new Date(expiryDate);
 
       if (expirationDate <= new Date() || !token || !userId) {
         props.navigation.navigiate("Auth");
