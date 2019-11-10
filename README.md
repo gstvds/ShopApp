@@ -49,6 +49,8 @@ To learn more about firebase auth api, go to https://firebase.google.com/docs/re
 
 To get the API_KEY, go to the Gear -> Project Settings
 
+To allow write only to authenticated users, we can go to Database -> Rules and change .write to "auth != null". To validate the token form firebase we just pass ?auth=TOKEN to the end of our URL that writes inside our app (like updateProducts, deleteProducts and createProducts)
+
 ## Pull to Refresh
 
 When working with FlatList, we can use a prop called onRefresh to add a pull to refresh. It receives a function that should refresh our screen. By adding this prop we should also add refreshing, a prop that points to a state that says if we are refreshing or not.
