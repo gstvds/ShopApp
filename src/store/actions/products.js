@@ -5,7 +5,8 @@ export const SET_PRODUCTS = "SET_PRODUCTS";
 import Product from "../../models/product";
 
 export const fetchProducts = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const userId = getState().auth.userId;
     // any async code you want!
     try {
       const response = await fetch(
@@ -23,7 +24,7 @@ export const fetchProducts = () => {
         loadedProducts.push(
           new Product(
             key,
-            "u1",
+            responseData[key].ownerId,
             responseData[key].title,
             responseData[key].imageUrl,
             responseData[key].description,
@@ -32,7 +33,13 @@ export const fetchProducts = () => {
         );
       }
 
-      dispatch({ type: SET_PRODUCTS, products: loadedProducts });
+      dispatch({
+        type: SET_PRODUCTS,
+        products: loadedProducts,
+        userProducts: loadedProducts.filter(
+          product => product.ownerId === userId
+        )
+      });
     } catch (err) {
       // Send to custom analytics server
       throw err;
@@ -41,9 +48,10 @@ export const fetchProducts = () => {
 };
 
 export const deleteProduct = productId => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const token = getState().auth.token;
     const response = await fetch(
-      `https://shop-app-26728.firebaseio.com/products/${productId}.json`,
+      `https://shop-app-26728.firebaseio.com/products/${productId}.json?auth={token}`,
       {
         method: "DELETE"
       }
@@ -58,10 +66,12 @@ export const deleteProduct = productId => {
 };
 
 export const createProduct = (title, description, imageUrl, price) => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     // any async code you want!
+    const token = getState().auth.token;
+    const userId = getState().auth.userId;
     const response = await fetch(
-      "https://shop-app-26728.firebaseio.com/products.json",
+      `https://shop-app-26728.firebaseio.com/products.json?auth=${token}`,
       {
         method: "POST",
         headers: {
@@ -71,7 +81,8 @@ export const createProduct = (title, description, imageUrl, price) => {
           title,
           description,
           imageUrl,
-          price
+          price,
+          ownerId: userId
         })
       }
     );
@@ -85,16 +96,19 @@ export const createProduct = (title, description, imageUrl, price) => {
         title,
         description,
         imageUrl,
-        price
+        price,
+        ownerId: userId
       }
     });
   };
 };
 
 export const updateProduct = (id, title, description, imageUrl) => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    // getState allows us to get access to full redux store
+    const token = getState().auth.token;
     const response = await fetch(
-      `https://shop-app-26728.firebaseio.com/products/${id}.json`,
+      `https://shop-app-26728.firebaseio.com/products/${id}.json?auth=${token}`,
       {
         method: "PATCH",
         // PUT will fully overwrite the data,
