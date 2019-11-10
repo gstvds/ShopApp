@@ -64,3 +64,11 @@ The app send datas to the server (email, password, etc). The server responds wit
 When you log in and the server checks the e-mail and password and determines that both is correct, the server creates a token. This token is send to the app and there you can store it in some storage, i.e. the redux storage. If the user log out, we simply delete this token.
 
 This token is also used for something else on the server. For example, certain URL which are only exposed to logged in users, like creating products in this app.
+
+## Auto Login
+
+To auto login a user, we need to store the token in user device. We can't do this by redux because redux is in memory and will be lost every time app restarts. So we need to store the token in device HD and check this HD every time app restart so we could get the token.
+
+To store, we use AsyncStorage inside our auth action creator. setItem receives a string, that need a key to retreive our data. To set values in setItem, we always need to pass a string. Since we want to pass our token and this is not a string, we can use JSON.stringify() to pass an JS object with the information that we want.
+
+AsyncStorage is a react native api that uses a key value storage on the device and is available in both OS.
